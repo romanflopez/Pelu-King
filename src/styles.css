@@ -43,7 +43,8 @@ body {
 }
 
 input,
-button {
+button,
+span {
   outline: none !important;
 }
 
@@ -57,4 +58,10 @@ button {
 
 .w80 {
   width: 80%;
+}
+
+.floating-action-button {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
 }
