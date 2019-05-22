@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="d-flex">
+    <div class="col-lg-9 my-auto">
+      <h5>Lista de Barberos</h5>
+    </div>
+    <div class="col-lg-3 text-right">
+      <form class="login-form" (ngSubmit)="findeCustomer()">
+        <input class="search--input" name="search" [(ngModel)]="searchText" #search="ngModel" matInput type="text"
+          placeholder="Buscar por nombre de cliente">
+        <div>
+          <button class="d-none" type="submit">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ng-container *ngFor="let c of barberList; let i of index;">
+    <div class="card-material">
+      <div class="d-flex">
+        <div class="col-lg-3 my-auto text-center row-size ">{{c.payload.doc.data().firstName}}</div>
+        <div class="col-lg-3 my-auto text-center row-size ">{{c.payload.doc.data().lastName}}</div>
+        <div class="col text-right my-auto"><i class="fas fa-edit pointer" (click)="onEdit(c.payload.doc.id)"></i>
+        </div>
+
+
+      </div>
+    </div>
+  </ng-container>
+
+  <button type="button" class="btn btn-primary bmd-btn-fab floating-action-button" (click)="goTo()">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>

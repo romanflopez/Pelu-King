@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="form">
+    <form class="login-form" (ngSubmit)="upsert()" validate>
+      <div>
+        <input type="text" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required
+          placeholder="Nombre" />
+      </div>
+      <div>
+        <input type="text" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required
+          placeholder="Apellido" />
+      </div>
+      <input type="number" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required
+        placeholder="Numero de telefono" />
+      <div>
+
+        <button class="btn btn-raised btn-success" type="submit">Agregra</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.justify-end {
+  justify-content: flex-end;
+}
+
+.hr {
+  border-top: 1px solid black;
+  width: 100%;
+}

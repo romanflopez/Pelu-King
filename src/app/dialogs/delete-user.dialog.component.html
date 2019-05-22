@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="d-block mx-auto text-center mb-4">
+    <img class="text-center" src="/assets/images/ic_trash.svg" alt="">
+  </div>
+  <div class="mb-4">
+    <p>
+      Estas seguro qe qeres eliminar a <span class="semi-bold"> {{data.name}} {{data.lastname}}</span>
+    </p>
+  </div>
+  <div class="d-flex">
+    <div class="col-lg-6">
+      <button [mat-dialog-close]="false" class="btn  btn-default w100" mat-dialog-close>Cancelar</button>
+    </div>
+    <div class="col-lg-6">
+      <button [mat-dialog-close]="true" class="btn btn-raised btn-danger w100" mat-dialog-close>Borrar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class=" mb-5 mt-3">
+    <div class="mb-3">
+      <h5 class="col-lg-12">Acciones</h5>
+    </div>
+    <div>
+      <app-actions></app-actions>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="col-lg-3 ">
+      <div class="card-material p24">
+        <p>Total de clientes</p>
+        <ng-container *ngIf="customersList">
+          {{customersList.length}}
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-lg-3 ">
+      <div class="card-material p24">
+        <p>Total Facturado</p>
+        <ng-container *ngIf="customersList">
+          {{totalPayment}}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+s

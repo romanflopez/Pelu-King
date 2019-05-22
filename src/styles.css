@@ -1,0 +1,60 @@
+@import url("https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css");
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,900');
+
+html,
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.card-material {
+  border-radius: 6px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
+}
+
+.p24 {
+  padding: 24px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.row-size {
+  padding: 18px 0px;
+}
+
+.btn {
+  border-radius: 22.5px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+input,
+button {
+  outline: none !important;
+}
+
+.search--input {
+  border-radius: 22.5px !important;
+  outline: none !important;
+  width: 100% !important;
+  border: none !important;
+  padding: 5px 10px !important;
+}
+
+.w80 {
+  width: 80%;
+}

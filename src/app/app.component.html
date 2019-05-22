@@ -1,0 +1,15 @@
+<mat-toolbar class="elvation" color="primary">
+  <mat-toolbar-row class="d-flex">
+    <div class="pointer" routerLink="/home">
+      <span>PELU-KING</span>
+    </div>
+    <div class="left">
+      <button class="clear-button" mat-button [matMenuTriggerFor]="menu"><span>{{currentUser.email}}</span> </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logOut()">Log Out</button>
+      </mat-menu>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
