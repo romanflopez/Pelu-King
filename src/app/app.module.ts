@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/auth.guard';
 import { DeletUserDialog } from "src/app/dialogs/delete-user.dialog.component";
 import { LoginComponent } from "./login/login.component";
 import { BrowserModule } from "@angular/platform-browser";
@@ -81,7 +82,7 @@ import { EarningsListComponent } from './earning/earnings-list/earnings-list.com
     MatDialogModule,
     MatMenuModule
   ],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [{ provide: FirestoreSettingsToken, useValue: {} }, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
