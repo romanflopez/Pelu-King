@@ -16,7 +16,7 @@ export class CustomersUpsertComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.uid = this.route.snapshot.paramMap.get("id");

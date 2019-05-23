@@ -13,20 +13,21 @@ import { AngularFirestoreCollection } from "@angular/fire/firestore";
 export class CustomersComponent implements OnInit {
   customersList: any;
   customerRef: AngularFirestoreCollection;
-  customerByName: string = "";
+  searchText: string = "";
   constructor(
     private customerService: CustomersServiceService,
     private router: Router,
     private snack: MatSnackBar,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.getCustomerByName()
     this.get();
   }
 
-
+  findeCustomer() {
+    console.log(this.searchText);
+  }
   get() {
     this.customerService.getCustomers().then(result => {
       this.customersList = result;
@@ -61,13 +62,5 @@ export class CustomersComponent implements OnInit {
           });
         }
       });
-  }
-
-  getCustomerByName() {
-    this.customerService.getCustomerByName(this.customerByName).subscribe(x => {
-      console.log(x)
-      // this.customersList = x
-    })
-
   }
 }
