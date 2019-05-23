@@ -12,8 +12,8 @@ export class CustomersServiceService implements OnInit {
 
   createUser(model) {
     return this.db.collection("customers").add({
-      firstName: model.firstName,
-      lastName: model.lastName,
+      firstName: model.firstName.toLowerCase(),
+      lastName: model.lastName.toLowerCase(),
       phone: parseInt(model.phone)
     });
   }
@@ -49,8 +49,8 @@ export class CustomersServiceService implements OnInit {
       .collection("customers")
       .doc(id)
       .set({
-        firstName: model.firstName,
-        lastName: model.lastName,
+        firstName: model.firstName.toLowerCase(),
+        lastName: model.lastName.toLowerCase(),
         phone: parseInt(model.phone)
       });
   }
@@ -72,6 +72,7 @@ export class CustomersServiceService implements OnInit {
   }
 
   getCustomerByName(nameToSearch: string) {
-    return this.db.collection('customers', ref => ref.where('firstName', '==', nameToSearch))
+    console.log(nameToSearch)
+    return this.db.collection('customers', ref => ref.where('firstName', '==', nameToSearch)).valueChanges()
   }
 }
