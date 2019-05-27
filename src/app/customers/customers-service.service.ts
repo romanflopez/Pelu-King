@@ -72,6 +72,10 @@ export class CustomersServiceService implements OnInit {
   }
 
   getCustomerByName(nameToSearch: string) {
-    return this.db.collection('customers', ref => ref.where('firstName', '==', nameToSearch))
+    return this.db.collection('customers', ref => ref.where('firstName', '==', nameToSearch)).snapshotChanges()
+  }
+  getClientPayments(customerId: string) {
+    console.log(customerId)
+    return this.db.collection('payments', ref => ref.where('customerId', '==', customerId)).valueChanges()
   }
 }

@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 <div class="container">
   <div class=" mb-5 mt-3">
     <div class="mb-3">
@@ -16,14 +17,6 @@
         </ng-container>
       </div>
     </div>
-    <div class="col-lg-3 ">
-      <div class="card-material p24">
-        <p>Total Facturado</p>
-        <ng-container *ngIf="customersList">
-          {{totalPayment}}
-        </ng-container>
-      </div>
-    </div>
+
   </div>
 </div>
-s

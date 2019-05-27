@@ -1,3 +1,49 @@
-<p>
-  earnings-list works!
-</p>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<div class="container">
+  <h5 class="mt-5">Ganancias</h5>
+  <div class="col-lg-6 mx-auto mt-1">
+    <form action="" (ngSubmit)="onSubmit()">
+      <mat-form-field class="col-lg-12" appearance="fill">
+        <mat-label>Lista de barberos</mat-label>
+        <mat-select [(ngModel)]="date.barberId" name="b">
+          <mat-option *ngFor="let b of barberList" [value]="b.payload.doc.id">
+            {{b.payload.doc.data().firstName}} {{b.payload.doc.data().lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="d-flex">
+        <mat-form-field class="col-lg-6" appearance="fill">
+          <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio" [(ngModel)]="date.startDate"
+            #dateStartDate="ngModel" name="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-lg-6" appearance="fill">
+          <input matInput [matDatepicker]="pickerEndDate" placeholder="Fecha de fin" [(ngModel)]="date.endDate"
+            #dateEndDate="ngModel" name="endDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEndDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <button class="btn btn-raised btn-success w-50 text-center mx-auto d-block mt-4" type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="paymentList">
+    <div class="d-flex">
+      <div class="col-lg-3 ">
+        <div class="card-material p24">
+          <span>Total de cortes</span>
+          {{paymentList.length}}
+        </div>
+      </div>
+      <div class="col-lg-3 ">
+        <div class="card-material p24">
+          <span>Total Recaudado</span>
+          <div>{{getTotalAmount()}}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

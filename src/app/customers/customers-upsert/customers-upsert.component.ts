@@ -9,6 +9,7 @@ import { MatSnackBar } from "@angular/material";
   styleUrls: ["./customers-upsert.component.css"]
 })
 export class CustomersUpsertComponent implements OnInit {
+  loading: boolean = false;
   uid: any;
   model: any = { firstName: "", lastName: "", phone: "" };
   constructor(
@@ -16,15 +17,19 @@ export class CustomersUpsertComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.uid = this.route.snapshot.paramMap.get("id");
+    if (this.route.snapshot.paramMap.get("id")) {
+      this.uid = this.route.snapshot.paramMap.get("id");
+      this.loading = true
+    }
     if (this.uid) {
       this.customerService.getCustomerById(this.uid).subscribe(x => {
         this.model.firstName = x.firstName;
         this.model.lastName = x.lastName;
         this.model.phone = x.phone;
+        this.loading = false
       });
     }
   }

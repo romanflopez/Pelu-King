@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 <div class="container mt-5">
   <div class="d-flex">
     <div class="col-lg-9 my-auto">
@@ -5,8 +6,8 @@
     </div>
     <div class="col-lg-3 text-right">
       <form class="login-form" (ngSubmit)="findeCustomer()">
-        <input class="search--input" name="search" [(ngModel)]="searchText" #search="ngModel" matInput type="text"
-          placeholder="Buscar por nombre de cliente">
+        <input class="search--input" name="customerName" [(ngModel)]="customerName" #customer="ngModel" matInput
+          type="text" placeholder="Buscar por nombre de cliente">
         <div>
           <button class="d-none" type="submit">Agregar</button>
         </div>

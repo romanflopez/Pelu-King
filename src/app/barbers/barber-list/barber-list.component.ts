@@ -11,15 +11,19 @@ import { Router } from "@angular/router";
 export class BarberListComponent implements OnInit {
   barberList: Array<Barber>;
   id: string
+  loading: boolean = false
   constructor(private barberService: BarberServiceService, private router: Router) { }
 
   ngOnInit() {
+    this.loading = true
+    this.get()
+  }
+  get() {
     this.barberService.getBarbers().then(x => {
       this.barberList = x
-      console.log(x)
+      this.loading = false
     })
   }
-
   onEdit(id) {
     this.router.navigateByUrl(`/barber/edit/${id}`);
   }

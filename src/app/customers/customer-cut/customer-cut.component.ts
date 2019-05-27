@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { BarberServiceService } from './../../barbers/barber-service.service';
 import { Component, OnInit } from "@angular/core";
 import { CustomersServiceService } from "../customers-service.service";
@@ -14,32 +15,32 @@ export class CustomerCutComponent implements OnInit {
   customerId: string;
   barberList: Array<Barber>
   barberId: string
-  cutList: Array<number>;
   amount: number = null
   date: Timestamp<Date>
   cutSelected = "";
-  cutNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  cutNumber
   constructor(
     private customerService: CustomersServiceService,
     private router: Router,
     private route: ActivatedRoute,
-    private barberService: BarberServiceService
+    private barberService: BarberServiceService,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
     this.customerId = this.route.snapshot.paramMap.get("id");
+    this.getClientQuantityPayments()
     this.customerService.getCustomerById(this.customerId).subscribe(x => {
-      this.cutList = x.numberOfCuts;
-      this.cutSelected = x.cutNumber;
     });
     this.getBarbers()
   }
 
   add() {
-
     this.customerService.addCut(this.barberId, this.amount, this.customerId, this.date).then(
       x => {
-        this.router.navigateByUrl('/customer-list')
+        this.snackBar.open("Se agrego el pago", "", { duration: 3000 });
+        this.router.navigateByUrl('/customers-list')
+
       }
     )
     // console.log(this.barberId, this.amount, this.date, this.cutSelected, this.customerId)
@@ -51,6 +52,12 @@ export class CustomerCutComponent implements OnInit {
 
     })
   }
-
+  getClientQuantityPayments() {
+    this.customerService.getClientPayments(this.customerId).subscribe(
+      res => {
+        this.cutNumber = res.length
+      }
+    )
+  }
 
 }

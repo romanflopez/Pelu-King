@@ -40,6 +40,7 @@ import { ActionsComponent } from './home/actions/actions.component';
 import { BarberListComponent } from './barbers/barber-list/barber-list.component';
 import { BarberUpsertComponent } from './barbers/barber-upsert/barber-upsert.component';
 import { EarningsListComponent } from './earning/earnings-list/earnings-list.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EarningsListComponent } from './earning/earnings-list/earnings-list.com
     ActionsComponent,
     BarberListComponent,
     BarberUpsertComponent,
-    EarningsListComponent
+    EarningsListComponent,
+    BackButtonComponent
   ],
   entryComponents: [DeletUserDialog],
   imports: [

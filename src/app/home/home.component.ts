@@ -7,24 +7,20 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+  loading: boolean = false
   customersList: Array<any>;
   paymentList: Array<number>;
-  totalPayment: number = 0;
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
+    this.loading = true
     this.get();
   }
   get() {
     this.homeService.getCustomers().then(result => {
-      let total = 0;
       this.customersList = result;
-      // this.customersList.forEach(element => {
-      //   element.payload.doc.data().paymentTest.forEach(e => {
-      //     total += e.price;
-      //   });
-      // });
-      // this.totalPayment = total;
+      this.loading = false
+
     });
   }
 }

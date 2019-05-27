@@ -1,9 +1,17 @@
+import { Timestamp } from 'rxjs';
+import { BarberServiceService } from './../barbers/barber-service.service';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { start } from 'repl';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Service {
+export class EarningService {
+  constructor(private db: AngularFirestore) { }
 
-  constructor() { }
+  getPaymentByBarberId(barberId: string, startDate: Timestamp<Date>, endDate: Timestamp<Date>) {
+    return this.db.collection('payments', ref => ref.where('barberId', '==', barberId).where('date', '>=', startDate).where('date', '<=', endDate)).valueChanges()
+  }
+
 }
