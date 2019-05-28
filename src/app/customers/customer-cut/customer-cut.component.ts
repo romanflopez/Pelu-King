@@ -1,10 +1,11 @@
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { BarberServiceService } from './../../barbers/barber-service.service';
 import { Component, OnInit } from "@angular/core";
 import { CustomersServiceService } from "../customers-service.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Barber } from 'src/app/model/barber';
-import { Timestamp } from 'rxjs';
+import { Timestamp, Observable } from 'rxjs';
+import { InformativeDialog } from 'src/app/dialogs/informative-dialog.component';
 
 @Component({
   selector: "app-customer-cut",
@@ -17,14 +18,15 @@ export class CustomerCutComponent implements OnInit {
   barberId: string
   amount: number = null
   date: Timestamp<Date>
-  cutSelected = "";
-  cutNumber
+  cutNumber: number
+  cutNumber$: Observable<any>
   constructor(
     private customerService: CustomersServiceService,
     private router: Router,
     private route: ActivatedRoute,
     private barberService: BarberServiceService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -33,17 +35,17 @@ export class CustomerCutComponent implements OnInit {
     this.customerService.getCustomerById(this.customerId).subscribe(x => {
     });
     this.getBarbers()
+
   }
 
   add() {
     this.customerService.addCut(this.barberId, this.amount, this.customerId, this.date).then(
       x => {
-        this.snackBar.open("Se agrego el pago", "", { duration: 3000 });
         this.router.navigateByUrl('/customers-list')
+        this.snackBar.open("Se agrego el pago", "", { duration: 3000 });
 
       }
     )
-    // console.log(this.barberId, this.amount, this.date, this.cutSelected, this.customerId)
   }
 
   getBarbers() {
@@ -55,9 +57,28 @@ export class CustomerCutComponent implements OnInit {
   getClientQuantityPayments() {
     this.customerService.getClientPayments(this.customerId).subscribe(
       res => {
-        this.cutNumber = res.length
+        if (res) {
+          this.cutNumber = res.length
+        }
       }
     )
   }
+
+  openInformativeDialog() {
+    this.dialog
+      .open(InformativeDialog, {
+        panelClass: "informative-cut-dialog",
+        data: {
+        }
+      })
+
+  }
+
+  checkCutQuantity() {
+    if (this.cutNumber == 4 || this.cutNumber == 9) {
+      this.openInformativeDialog()
+    }
+  }
+
 
 }

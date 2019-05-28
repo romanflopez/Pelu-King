@@ -41,6 +41,7 @@ import { BarberListComponent } from './barbers/barber-list/barber-list.component
 import { BarberUpsertComponent } from './barbers/barber-upsert/barber-upsert.component';
 import { EarningsListComponent } from './earning/earnings-list/earnings-list.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { InformativeDialog } from './dialogs/informative-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     CustomersComponent,
     CustomersUpsertComponent,
     DeletUserDialog,
+    InformativeDialog,
     CustomerCutComponent,
     ActionsComponent,
     BarberListComponent,
@@ -58,7 +60,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     EarningsListComponent,
     BackButtonComponent
   ],
-  entryComponents: [DeletUserDialog],
+  entryComponents: [DeletUserDialog, InformativeDialog],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
