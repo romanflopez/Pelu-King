@@ -25,7 +25,7 @@ export class CustomersUpsertComponent implements OnInit {
       this.loading = true
     }
     if (this.uid) {
-      this.customerService.getCustomerById(this.uid).subscribe(x => {
+      this.customerService.getCustomerById(this.uid).subscribe((x: any) => {
         this.model.firstName = x.firstName;
         this.model.lastName = x.lastName;
         this.model.phone = x.phone;

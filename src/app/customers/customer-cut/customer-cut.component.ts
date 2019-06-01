@@ -13,6 +13,7 @@ import { InformativeDialog } from 'src/app/dialogs/informative-dialog.component'
   styleUrls: ["./customer-cut.component.css"]
 })
 export class CustomerCutComponent implements OnInit {
+
   customerId: string;
   barberList: Array<Barber>
   barberId: string
@@ -20,6 +21,7 @@ export class CustomerCutComponent implements OnInit {
   date: Timestamp<Date>
   cutNumber: number
   cutNumber$: Observable<any>
+  loading: boolean = false
   constructor(
     private customerService: CustomersServiceService,
     private router: Router,
@@ -30,11 +32,14 @@ export class CustomerCutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true
     this.customerId = this.route.snapshot.paramMap.get("id");
     this.getClientQuantityPayments()
+
     this.customerService.getCustomerById(this.customerId).subscribe(x => {
     });
     this.getBarbers()
+
 
   }
 
@@ -55,29 +60,33 @@ export class CustomerCutComponent implements OnInit {
     })
   }
   getClientQuantityPayments() {
-    this.customerService.getClientPayments(this.customerId).subscribe(
+    this.customerService.getClientPayments(this.customerId).then(
       res => {
         if (res) {
           this.cutNumber = res.length
+          this.loading = false
+          if (this.loading == false) {
+            this.checkCutQuantity()
+          }
         }
       }
     )
   }
 
-  openInformativeDialog() {
+  openInformativeDialog(cutNumber: number) {
     this.dialog
       .open(InformativeDialog, {
         panelClass: "informative-cut-dialog",
         data: {
+          cutNumber: cutNumber
         }
       })
 
   }
 
   checkCutQuantity() {
-    if (this.cutNumber == 4 || this.cutNumber == 9) {
-      this.openInformativeDialog()
-    }
+
+
   }
 
 

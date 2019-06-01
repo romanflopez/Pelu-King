@@ -2,7 +2,6 @@ import { Timestamp } from 'rxjs';
 import { BarberServiceService } from './../barbers/barber-service.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { start } from 'repl';
 
 @Injectable({
   providedIn: 'root'

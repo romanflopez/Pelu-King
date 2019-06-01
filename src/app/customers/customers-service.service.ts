@@ -75,7 +75,11 @@ export class CustomersServiceService implements OnInit {
     return this.db.collection('customers', ref => ref.where('firstName', '==', nameToSearch)).snapshotChanges()
   }
   getClientPayments(customerId: string) {
-    console.log(customerId)
-    return this.db.collection('payments', ref => ref.where('customerId', '==', customerId)).valueChanges()
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('payments', ref => ref.where('customerId', '==', customerId)).valueChanges().subscribe(snapshots => {
+        resolve(snapshots);
+      });
+    }
+    )
   }
 }

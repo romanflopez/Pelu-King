@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class BarberUpsertComponent implements OnInit {
   uid: any;
   model: any = { firstName: "", lastName: "" };
+  caca
   constructor(
     private barberService: BarberServiceService,
     private router: Router,
@@ -21,7 +22,8 @@ export class BarberUpsertComponent implements OnInit {
   ngOnInit() {
     this.uid = this.route.snapshot.paramMap.get("id");
     if (this.uid) {
-      this.barberService.getBarberById(this.uid).subscribe(x => {
+      this.barberService.getBarberById(this.uid).subscribe((x: any) => {
+        console.log(x)
         this.model.firstName = x.firstName;
         this.model.lastName = x.lastName;
       });
