@@ -7,8 +7,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  currentUser: string;
-  constructor(private authService: AuthService) {}
+  currentUser: any;
+  constructor(private authService: AuthService) { }
   ngOnInit(): void {
     this.currentUser = this.authService.getUser();
   }

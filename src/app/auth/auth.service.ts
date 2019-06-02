@@ -13,18 +13,18 @@ export class AuthService implements OnInit {
   errorMessage: Observable<any>;
   successMessage: string;
 
-  constructor(public afAuth: AngularFireAuth, public router: Router) {}
+  constructor(public afAuth: AngularFireAuth, public router: Router) { }
 
   ngOnInit() {
     this.setUserLocalStorange();
     this.getUser();
   }
 
-  login(email: string, password: string) {
+  login(email: any, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  register(email: string, password: string) {
+  register(email: any, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
       res => {
         this.successMessage = "Your account has been created";
