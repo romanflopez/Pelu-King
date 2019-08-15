@@ -82,4 +82,14 @@ export class CustomersServiceService implements OnInit {
     }
     )
   }
+
+
+  getLastCut(customerId: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('payments', ref => ref.where('customerId', '==', customerId).orderBy('date', 'desc').limit(1)).valueChanges().subscribe(snapshots => {
+        resolve(snapshots);
+      });
+    }
+    )
+  }
 }

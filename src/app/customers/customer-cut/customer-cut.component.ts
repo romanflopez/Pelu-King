@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Barber } from 'src/app/model/barber';
 import { Timestamp, Observable } from 'rxjs';
 import { InformativeDialog } from 'src/app/dialogs/informative-dialog.component';
+import * as moment from 'moment';
+
 
 @Component({
   selector: "app-customer-cut",
@@ -21,6 +23,7 @@ export class CustomerCutComponent implements OnInit {
   date: Timestamp<Date>
   cutNumber: number
   cutNumber$: Observable<any>
+  lastCut: any
   loading: boolean = false
   constructor(
     private customerService: CustomersServiceService,
@@ -36,10 +39,9 @@ export class CustomerCutComponent implements OnInit {
     this.customerId = this.route.snapshot.paramMap.get("id");
     this.getClientQuantityPayments()
 
-    this.customerService.getCustomerById(this.customerId).subscribe(x => {
-    });
+    this.customerService.getCustomerById(this.customerId).subscribe();
     this.getBarbers()
-
+    this.getLastCut()
 
   }
 
@@ -65,10 +67,16 @@ export class CustomerCutComponent implements OnInit {
         if (res) {
           this.cutNumber = res.length
           this.loading = false
-          if (this.loading == false) {
-            this.checkCutQuantity()
-          }
         }
+      }
+    )
+  }
+  getLastCut() {
+    this.customerService.getLastCut(this.customerId).then(
+      res => {
+        console.log
+        this.lastCut = moment.unix(res[0].date.seconds).format("DD/MM/YYYY");
+
       }
     )
   }
@@ -84,10 +92,6 @@ export class CustomerCutComponent implements OnInit {
 
   }
 
-  checkCutQuantity() {
-
-
-  }
 
 
 }

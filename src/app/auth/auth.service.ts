@@ -59,4 +59,12 @@ export class AuthService implements OnInit {
   getUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
+
+  checkUserRegister() {
+    if (!this.getUser()) {
+      this.router.navigateByUrl('login')
+    } else {
+      return ''
+    }
+  }
 }

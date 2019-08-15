@@ -23,7 +23,6 @@ export class BarberUpsertComponent implements OnInit {
     this.uid = this.route.snapshot.paramMap.get("id");
     if (this.uid) {
       this.barberService.getBarberById(this.uid).subscribe((x: any) => {
-        console.log(x)
         this.model.firstName = x.firstName;
         this.model.lastName = x.lastName;
       });

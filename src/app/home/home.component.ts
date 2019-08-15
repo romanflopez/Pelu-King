@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { HomeService } from "./home.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -10,11 +11,13 @@ export class HomeComponent implements OnInit {
   loading: boolean = false
   customersList: Array<any>;
   paymentList: Array<number>;
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.checkUserRegister()
     this.loading = true
     this.get();
+
   }
   get() {
     this.homeService.getCustomers().then(result => {
@@ -23,4 +26,5 @@ export class HomeComponent implements OnInit {
 
     });
   }
+
 }

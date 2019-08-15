@@ -38,7 +38,6 @@ export class CustomersComponent implements OnInit {
   }
   get() {
     this.customerService.getCustomers().then(result => {
-      console.log(result)
       this.customersList = result;
       this.loading = false
     });

@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { BarberServiceService } from "./../barber-service.service";
 import { Barber } from "./../../model/barber";
 import { Component, OnInit } from "@angular/core";
@@ -12,9 +13,10 @@ export class BarberListComponent implements OnInit {
   barberList: Array<Barber>;
   id: string
   loading: boolean = false
-  constructor(private barberService: BarberServiceService, private router: Router) { }
+  constructor(private barberService: BarberServiceService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.checkUserRegister()
     this.loading = true
     this.get()
   }

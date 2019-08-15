@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { BarberServiceService } from './../../barbers/barber-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from 'rxjs';
@@ -15,9 +16,10 @@ export class EarningsListComponent implements OnInit {
 
   loading: boolean = false
   date = { startDate: null, endDate: null, barberId: '' }
-  constructor(private barberService: BarberServiceService, private earningService: EarningService) { }
+  constructor(private barberService: BarberServiceService, private earningService: EarningService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.checkUserRegister()
     this.getBarbers()
   }
   getBarbers() {
